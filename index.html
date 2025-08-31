@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base - Digital Agency</title>
+    <style>
+        /* Basic resets and body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* Header styling with Flexbox */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-container img {
+            width: 90px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Dropdown Menu Styles */
+        .has-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 150%;
+            left: -20px;
+            width: 150px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 10;
+
+            /* Transition properties */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-transparent {
+            background-color: transparent;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: rgb(56, 105, 196);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main content layout with Flexbox */
+        main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 100px;
+            gap: 50px;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            border-bottom-left-radius: 50px;
+        }
+
+
+        .hero-content {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .contact-info .phone-number {
+            font-size: 22px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .contact-info .subtext {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            z-index: 1;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s;
+        }
+
+        .hero-image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features-section {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 80px 50px;
+        }
+
+        .feature-block {
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+
+        .icon-circle img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon-pink {
+            background-color: rgb(56, 105, 196);
+        }
+
+        .icon-green {
+            background-color: rgb(56, 105, 196);
+        }
+
+        .icon-orange {
+            background-color: rgb(56, 105, 196);
+        }
+
+        .feature-block h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-block p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Content Section below features */
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 50px 100px;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .left-images {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .left-images img {
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-top {
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-bottom {
+            margin-top: -80px;
+            /* Overlap effect */
+            z-index: 1;
+        }
+
+        .shape-yellow {
+            width: 100px;
+            height: 100px;
+            background-color: #ffde54;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            border-radius: 50%;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .shape-squiggly {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 50px;
+            height: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10 50 Q 25 25 50 50 Q 75 75 90 50' fill='none' stroke='%23f5b7b7' stroke-width='5'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: contain;
+            transform: rotate(90deg);
+            z-index: 0;
+        }
+
+        .right-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .right-content .pre-title {
+            color: rgb(56, 105, 196);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .right-content h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .right-content p {
+            margin-top: 20px;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: rgb(56, 105, 196);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://base-tailwind.preview.uideck.com/images/logo-light.svg" alt="Base logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" style="color: blue;">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Pages</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Blog Grid</a></li>
+                        <li><a href="#">Blog Single</a></li>
+                        <li><a href="#">Sign In</a></li>
+                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">404</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <span class="theme-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                    class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                    <path
+                        d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                    <path
+                        d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                    <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                    <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                    <path
+                        d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                    <path
+                        d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                    <path
+                        d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                    <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                </svg>
+            </span>
+            <a href="#" class="btn btn-transparent">Sign In</a>
+            <a href="#" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-content">
+            <h1>We specialize in UI/UX, Web Development, Digital Marketing.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla magna mauris. Nulla fermentum
+                viverra sem eu rhoncus consequat varius nisi quis, posuere magna.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Get Started Now</a>
+                <div class="contact-info">
+                    <span class="phone-number">Call us (0123) 456 - 789</span>
+                    <span class="subtext">For any question or concern</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://base-tailwind.preview.uideck.com/images/hero.png"
+                alt="A smiling woman working on a laptop">
+        </div>
+    </main>
+
+    <section class="features-section">
+        <div class="feature-block">
+            <div class="icon-circle icon-pink">
+                <img src="https://base-tailwind.preview.uideck.com/images/icon-01.svg" alt="Support Icon">
+            </div>
+            <h3>24/7 Support</h3>
+            <p>Lorem ipsum dolor sit amet conse adipiscing elit.</p>
+        </div>
+        <div class="feature-block">
+            <div class="icon-circle icon-green">
+                <img src="https://base-tailwind.preview.uideck.com/images/icon-02.svg" alt="Ownership Icon">
+            </div>
+            <h3>Take Ownership</h3>
+            <p>Lorem ipsum dolor sit amet conse adipiscing elit.</p>
+        </div>
+        <div class="feature-block">
+            <div class="icon-circle icon-orange">
+                <img src="https://base-tailwind.preview.uideck.com/images/icon-03.svg" alt="Team Work Icon">
+            </div>
+            <h3>Team Work</h3>
+            <p>Lorem ipsum dolor sit amet conse adipiscing elit.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="left-images">
+            <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg"
+                alt="Two women working on a laptop" class="image-top">
+            <div class="shape-yellow"></div>
+            <div class="shape-squiggly"></div>
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"
+                alt="Woman smiling at a laptop" class="image-bottom">
+        </div>
+        <div class="right-content">
+            <p class="pre-title">Why Choose Us</p>
+            <h2>We Make Our customers happy by giving Best services.</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla magna mauris. Nulla fermentum
+                viverra sem eu rhoncus consequat varius nisi quis, posuere magna.</p>
+        </div>
+    </section>
+
+    <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <span>&uarr;</span>
+    </div>
+
+</body>
+
+</html>
